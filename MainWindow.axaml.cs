@@ -3,7 +3,9 @@ using Avalonia.Interactivity;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using static ReLaunch.Launcher;
+
 
 namespace ReLaunch;
 
@@ -20,10 +22,8 @@ public partial class MainWindow : Window
 
     static void RunCommand(string command)
     {
-
         var processInfo = new ProcessStartInfo
         {
-            FileName = "/bin/bash",
             RedirectStandardInput = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -31,6 +31,22 @@ public partial class MainWindow : Window
             CreateNoWindow = true,
             WorkingDirectory = Directory.GetCurrentDirectory()
         };
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            processInfo.FileName = "cmd.exe";
+            processInfo.Arguments = $"/c {command}";
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            processInfo.FileName = "/bin/bash";
+            processInfo.Arguments = $"-c \"{command}\"";
+        }
+        else
+        {
+            Console.WriteLine("Unsupported operating system");
+            return;
+        }
 
         using (var process = new Process { StartInfo = processInfo })
         {

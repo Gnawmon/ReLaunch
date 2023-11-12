@@ -2,12 +2,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Avalonia="clr-namespace:TheArtOfDev.HtmlRenderer.Avalonia;assembly=Avalonia.HtmlRenderer"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ReLaunch.MainWindow"
-        Title="ReLaunch">
-<StackPanel Margin="200">
-        <TextBox x:Name="username"  Watermark="Username"/>
-     <Button HorizontalAlignment="Center" Click="LaunchButtonClick">Launch</Button>
+        Title="ReLaunch"
+        Width="700"
+        Height="430"
+        >
+<Window.Background>
+    <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="assets/dirtbg.png"/>
+</Window.Background>
 
-    </StackPanel>
+<Panel Height="100" VerticalAlignment="Bottom" Background="BlueViolet">
+        
+
+          <Panel.Background>
+                <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="assets/dirtbg.png"/>
+                </Panel.Background>
+        <TextBox x:Name="username" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="Username"/>
+        
+    <Panel HorizontalAlignment="Right">
+        <Panel.Background>
+                <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="assets/stonebg.png"/>
+                </Panel.Background>
+         <Button VerticalAlignment="Top" Margin="10" Width="200" Height="35" Click="LaunchButtonClick">Launch</Button>
+         <Button VerticalAlignment="Bottom" Margin="10" Width="200" Height="35" Click="LaunchButtonClick">Settings</Button>
+ </Panel>
+    </Panel>
 </Window>
