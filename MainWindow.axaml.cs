@@ -15,11 +15,16 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-    public void LaunchButtonClick(object source, RoutedEventArgs args){
-        RunCommand(LaunchCommandConstructor(GetDefaultJava(),"-Xms512m -Xmx1g","natives/","r4.jar",GetLibraries("libraries/"),"net.minecraft.client.Minecraft",username.Text));
-           // System.Console.WriteLine();
+    public void LaunchButtonClick(object source, RoutedEventArgs args)
+    {
+        RunCommand(LaunchCommandConstructor(GetDefaultJava(), "-Xms512m -Xmx1g", "natives/", "r4.jar", GetLibraries("libraries/"), "net.minecraft.client.Minecraft", username.Text));
+        // System.Console.WriteLine();
     }
-
+    public void SettingsButtonClick(object source, RoutedEventArgs args)
+    {
+     SettingsManager sm = new SettingsManager();
+     sm.Show();
+    }
     static void RunCommand(string command)
     {
         var processInfo = new ProcessStartInfo

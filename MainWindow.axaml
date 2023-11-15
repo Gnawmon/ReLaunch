@@ -26,7 +26,7 @@
                 <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="assets/stonebg.png"/>
                 </Panel.Background>
          <Button VerticalAlignment="Top" Margin="10" Width="200" Height="35" Click="LaunchButtonClick">Launch</Button>
-         <Button VerticalAlignment="Bottom" Margin="10" Width="200" Height="35" Click="LaunchButtonClick">Settings</Button>
+         <Button VerticalAlignment="Bottom" Margin="10" Width="200" Height="35" Click="SettingsButtonClick">Settings</Button>
  </Panel>
     </Panel>
 </Window>
