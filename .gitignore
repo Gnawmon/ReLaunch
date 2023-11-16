@@ -400,3 +400,4 @@ FodyWeavers.xsd
 *.jar
 qfile
 natives/
+settings.json
