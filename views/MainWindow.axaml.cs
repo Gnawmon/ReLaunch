@@ -5,25 +5,36 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using static ReLaunch.Launcher;
-
+using static ReLaunch.SettingsUtility;
 
 namespace ReLaunch;
 
 public partial class MainWindow : Window
 {
+    Settings settings;
+
     public MainWindow()
     {
+        SettingsUtility su = new SettingsUtility();
         InitializeComponent();
+        try
+        {
+            settings = su.LoadSettings("settings.json");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
     public void LaunchButtonClick(object source, RoutedEventArgs args)
     {
-        RunCommand(LaunchCommandConstructor(GetDefaultJava(), "-Xms512m -Xmx1g", "natives/", "r4.jar", GetLibraries("libraries/"), "net.minecraft.client.Minecraft", username.Text));
+        RunCommand(LaunchCommandConstructor(GetDefaultJava(), settings.arguments, "natives/", $"jars/{settings.minecraftJar}.jar", GetLibraries("libraries/"), "net.minecraft.client.Minecraft", settings.username));
         // System.Console.WriteLine();
     }
     public void SettingsButtonClick(object source, RoutedEventArgs args)
     {
-     SettingsManager sm = new SettingsManager();
-     sm.Show();
+        SettingsManager sm = new SettingsManager();
+        sm.Show();
     }
     static void RunCommand(string command)
     {

@@ -398,6 +398,14 @@ FodyWeavers.xsd
 *.sln.iml
 
 *.jar
-qfile
 natives/
+libraries/
+jars/
 settings.json
+
+#files that alphaver create
+saves/
+resources/
+qfile
+v3_act
+preview_data

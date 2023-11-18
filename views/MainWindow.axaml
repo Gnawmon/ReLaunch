@@ -10,20 +10,20 @@
         Height="430"
         >
 <Window.Background>
-    <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="assets/dirtbg.png"/>
+    <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="../assets/dirtbg.png"/>
 </Window.Background>
 
 <Panel Height="100" VerticalAlignment="Bottom" Background="BlueViolet">
         
 
           <Panel.Background>
-                <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="assets/dirtbg.png"/>
+                <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="../assets/dirtbg.png"/>
                 </Panel.Background>
         <TextBox x:Name="username" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="Username"/>
         
     <Panel HorizontalAlignment="Right">
         <Panel.Background>
-                <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="assets/stonebg.png"/>
+                <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="../assets/stonebg.png"/>
                 </Panel.Background>
          <Button VerticalAlignment="Top" Margin="10" Width="200" Height="35" Click="LaunchButtonClick">Launch</Button>
          <Button VerticalAlignment="Bottom" Margin="10" Width="200" Height="35" Click="SettingsButtonClick">Settings</Button>

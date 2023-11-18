@@ -7,6 +7,15 @@
         Title="SettingsManager">
   <StackPanel>
      <TextBox x:Name="username" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="Username"/>
+     <TextBox x:Name="arguments" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="Arguments"/>
+     <TextBox x:Name="javaPath" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="javaPath"/>
+     <ComboBox x:Name="selectedVersion" SelectedIndex="1">
+            <ComboBoxItem></ComboBoxItem>
+            <ComboBoxItem>ext1605_20_client</ComboBoxItem>
+            <ComboBoxItem>lilypad_qa_r1</ComboBoxItem>
+            <ComboBoxItem>v1605_preview</ComboBoxItem>
+        </ComboBox>
     <Button Width="200" Height="35" Click="SaveButtonClick">Save</Button>
     </StackPanel>
+   
 </Window>
