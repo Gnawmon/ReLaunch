@@ -3,9 +3,9 @@ using Avalonia.Interactivity;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using static ReLaunch.Launcher;
-using static ReLaunch.SettingsUtility;
 
 namespace ReLaunch;
 
@@ -16,7 +16,18 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         SettingsUtility su = new SettingsUtility();
+        Downloader downloader = new Downloader();
         InitializeComponent();
+        string[] libraries = { "jinput-2.0.5.jar", "lwjgl_util-2.9.0.jar", "lwjgl-2.9.0.jar" };
+        foreach (string l in libraries)
+        {
+            if (!Directory.GetFiles("libraries/").Contains(l) || !Directory.Exists("libraries/")) //probably there is a better way to check this
+            {
+                downloader.DownloadLibraries("libraries/");
+                break;
+            }
+        }
+
         try
         {
             settings = su.LoadSettings("settings.json");
@@ -29,7 +40,7 @@ public partial class MainWindow : Window
     public void LaunchButtonClick(object source, RoutedEventArgs args)
     {
         RunCommand(LaunchCommandConstructor(GetDefaultJava(), settings.arguments, "natives/", $"jars/{settings.minecraftJar}.jar", GetLibraries("libraries/"), "net.minecraft.client.Minecraft", settings.username));
-        // System.Console.WriteLine();
+
     }
     public void SettingsButtonClick(object source, RoutedEventArgs args)
     {

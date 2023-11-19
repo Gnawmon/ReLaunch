@@ -12,7 +12,7 @@ public class Launcher
         {
             try
             {
-                JavaPath = Environment.GetEnvironmentVariable("USER", EnvironmentVariableTarget.User);
+                JavaPath = Environment.GetEnvironmentVariable("JAVA_HOME", EnvironmentVariableTarget.Machine);
 
             }
             catch (Exception e)
@@ -43,11 +43,12 @@ public class Launcher
         string returnValue = "";
         foreach (string file in Directory.GetFiles(location))
         {
-            returnValue += file +":";
+            returnValue += file + ":";
         }
         return returnValue;
     }
-    public static string LaunchCommandConstructor(string java, string arguments,string natives, string jar, string libraries, string entryPoint,string username){
+    public static string LaunchCommandConstructor(string java, string arguments, string natives, string jar, string libraries, string entryPoint, string username)
+    {
         return $"{java} {arguments} -Djava.library.path={natives} -cp \"{jar}:{libraries}\" {entryPoint} {username}";
     }
 }

@@ -402,6 +402,7 @@ natives/
 libraries/
 jars/
 settings.json
+natives.zip
 
 #files that alphaver create
 saves/
