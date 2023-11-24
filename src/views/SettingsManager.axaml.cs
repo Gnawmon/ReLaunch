@@ -23,17 +23,18 @@ public partial class SettingsManager : Window
             Console.WriteLine(e);
         }
         username.Text = settings.username;
-        javaPath.Text = settings.javaPath;
-        arguments.Text = settings.arguments;
+        javaPath.Text = settings.JavaPath;
+        arguments.Text = settings.Arguments;
+        defaultNatives.IsChecked = settings.UseDefaultNativesLibraries;
     }
     public void SaveButtonClick(object source, RoutedEventArgs args)
     {
 
-
+        settings.UseDefaultNativesLibraries = defaultNatives.IsChecked;
         settings.username = username.Text;
-        settings.minecraftJar = "ext1605_20_client"; //idk how to select from a combobox so its gonna only launch r4 for now lolololololol
-        settings.javaPath = javaPath.Text;
-        settings.arguments = arguments.Text;
+        settings.MinecraftJar = "ext1605_20_client"; //idk how to select from a combobox so its gonna only launch r4 for now lolololololol
+        settings.JavaPath = javaPath.Text;
+        settings.Arguments = arguments.Text;
         su.SaveSettings(settings, "settings.json");
     }
 }

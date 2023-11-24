@@ -47,8 +47,18 @@ public class Launcher
         }
         return returnValue;
     }
-    public static string LaunchCommandConstructor(string java, string arguments, string natives, string jar, string libraries, string entryPoint, string username)
+    public static string LaunchCommandConstructor(string javaPath, string arguments, string natives, string jar, string libraries, string entryPoint, string username)
     {
-        return $"{java} {arguments} -Djava.library.path={natives} -cp \"{jar}:{libraries}\" {entryPoint} {username}";
+        string javaExecutable = "";
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            javaExecutable = "bin/javaw.exe";
+        }
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) //idk if its like this on osx too and im too lazy to test it
+        {
+            javaExecutable = "bin/java";
+        }
+
+        return $"{javaPath + javaExecutable} {arguments} -Djava.library.path={natives} -cp \"{jar}:{libraries}\" {entryPoint} {username}";
     }
 }

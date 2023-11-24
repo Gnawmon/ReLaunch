@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using static ReLaunch.Launcher;
-
+using static ReLaunch.Downloader;
 namespace ReLaunch;
 
 public partial class MainWindow : Window
@@ -18,28 +18,24 @@ public partial class MainWindow : Window
         SettingsUtility su = new SettingsUtility();
         Downloader downloader = new Downloader();
         InitializeComponent();
-        string[] libraries = { "jinput-2.0.5.jar", "lwjgl_util-2.9.0.jar", "lwjgl-2.9.0.jar" };
-        foreach (string l in libraries)
-        {
-            if (!Directory.GetFiles("libraries/").Contains(l) || !Directory.Exists("libraries/")) //probably there is a better way to check this
-            {
-                downloader.DownloadLibraries("libraries/");
-                break;
-            }
-        }
 
-        try
+        settings = su.LoadSettings("settings.json");
+usernameText.Text = "Logged in as " + settings.username;
+        if (!AreNativesInstalled("natives/"))
         {
-            settings = su.LoadSettings("settings.json");
+            downloader.DownloadNatives("natives/");
+
         }
-        catch (Exception e)
+        if (!AreLibrariesInstalled("libraries/"))
         {
-            Console.WriteLine(e);
+            downloader.DownloadLibraries("libraries/");
         }
     }
+
+
     public void LaunchButtonClick(object source, RoutedEventArgs args)
     {
-        RunCommand(LaunchCommandConstructor(GetDefaultJava(), settings.arguments, "natives/", $"jars/{settings.minecraftJar}.jar", GetLibraries("libraries/"), "net.minecraft.client.Minecraft", settings.username));
+        RunCommand(LaunchCommandConstructor(settings.JavaPath, settings.Arguments, "natives/", $"jars/{settings.MinecraftJar}.jar", GetLibraries("libraries/"), "net.minecraft.client.Minecraft", settings.username));
 
     }
     public void SettingsButtonClick(object source, RoutedEventArgs args)

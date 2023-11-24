@@ -19,7 +19,7 @@
           <Panel.Background>
                 <ImageBrush TileMode="Tile" Stretch="UniformToFill" Source="../assets/dirtbg.png"/>
                 </Panel.Background>
-        <TextBox x:Name="username" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="Username"/>
+        <TextBlock Margin="10" FontStyle="Italic" x:Name="usernameText" Foreground="Black" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" >Logged in as</TextBlock>
         
     <Panel HorizontalAlignment="Right">
         <Panel.Background>

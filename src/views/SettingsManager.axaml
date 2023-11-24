@@ -9,6 +9,7 @@
      <TextBox x:Name="username" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="Username"/>
      <TextBox x:Name="arguments" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="Arguments"/>
      <TextBox x:Name="javaPath" Width="200" HorizontalAlignment="Left" Margin="10" Watermark="javaPath"/>
+     <CheckBox x:Name="defaultNatives" >Use default natvies and libraries</CheckBox>
      <ComboBox x:Name="selectedVersion" SelectedIndex="1">
             <ComboBoxItem></ComboBoxItem>
             <ComboBoxItem>ext1605_20_client</ComboBoxItem>
