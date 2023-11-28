@@ -6,7 +6,7 @@ namespace ReLaunch;
 public class SettingsUtility
 {
 
-    public void SaveSettings(Settings settings, string filename)
+    public static void SaveSettings(Settings settings, string filename)
     {
         string json = JsonConvert.SerializeObject(settings);
         File.WriteAllText(filename, json);
@@ -16,7 +16,7 @@ public class SettingsUtility
     /// </summary>
     /// <param name="file"></param>
     /// <returns></returns>
-    public Settings LoadSettings(string file)
+    public static Settings LoadSettings(string file)
     {
         if (File.Exists(file))
         {
@@ -30,6 +30,7 @@ public class SettingsUtility
             defaultSettings.MinecraftJar = "ext1605_20_client";
             defaultSettings.JavaPath = Launcher.GetDefaultJava();
             defaultSettings.Arguments = "";
+            SaveSettings(defaultSettings, "settings.json");
             return defaultSettings;
         }
     }

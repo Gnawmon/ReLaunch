@@ -401,6 +401,7 @@ FodyWeavers.xsd
 natives/
 libraries/
 jars/
+.minecraft/
 settings.json
 natives.zip
 

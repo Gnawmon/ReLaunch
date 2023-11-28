@@ -10,16 +10,16 @@ using System.IO;
 namespace ReLaunch;
 class Downloader
 {
-    public void DownloadVanilla(string version, string location)
+    public static void DownloadVanilla(string version, string location)
     {
         string[] acceptedValues = { "ext1605_20_client", "lilypad_qa_r1", "v1605_preview", "v1605_unrpreview" };
         if (!acceptedValues.Contains(version)) return;
         string link = $"https://github.com/Gnawmon/alphaverJars/raw/main/{version}.jar";
-
+        if (version == "ext1605_20_client") link = "https://www.dropbox.com/scl/fi/2n1bf5axbssr6shr9uadq/ext1605_20_client.jar?rlkey=u8r884nph22wxuinwqsqbto9u&dl=1";
         var t = Task.Run(() => DownloadFileAsync(link, $"{location}{version}.jar"));
         t.Wait();
     }
-    public void DownloadNatives(string location)
+    public static void DownloadNatives(string location)
     {
         string link = "";
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -43,7 +43,7 @@ class Downloader
         ZipFile.ExtractToDirectory("natives.zip", location, true);
         File.Delete("natives.zip");
     }
-    public void DownloadLibraries(string location)
+    public static void DownloadLibraries(string location)
     {
         if (!Directory.Exists("labraries/"))
         {
@@ -144,5 +144,11 @@ class Downloader
             }
         }
         return true;
+    }
+    public static bool IsVanilla(string version)
+    {
+        string[] acceptedValues = { "ext1605_20_client", "lilypad_qa_r1", "v1605_preview", "v1605_unrpreview","ext1605_17" };
+        if (acceptedValues.Contains(version)) return true;
+        return false;
     }
 }

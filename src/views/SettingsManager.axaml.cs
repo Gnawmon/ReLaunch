@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
 using System;
-
+using static ReLaunch.SettingsUtility;
 namespace ReLaunch;
 
 public partial class SettingsManager : Window
@@ -16,7 +16,7 @@ public partial class SettingsManager : Window
         InitializeComponent();
         try
         {
-            settings = su.LoadSettings("settings.json");
+            settings = LoadSettings("settings.json");
         }
         catch (Exception e)
         {
@@ -32,9 +32,9 @@ public partial class SettingsManager : Window
 
         settings.UseDefaultNativesLibraries = defaultNatives.IsChecked;
         settings.username = username.Text;
-        settings.MinecraftJar = "ext1605_20_client"; //idk how to select from a combobox so its gonna only launch r4 for now lolololololol
+        settings.MinecraftJar = selectedVersion.SelectionBoxItem.ToString(); //idk how to select from a combobox so its gonna only launch r4 for now lolololololol
         settings.JavaPath = javaPath.Text;
         settings.Arguments = arguments.Text;
-        su.SaveSettings(settings, "settings.json");
+        SaveSettings(settings, "settings.json");
     }
 }
